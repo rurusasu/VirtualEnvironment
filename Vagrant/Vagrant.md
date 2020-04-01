@@ -8,10 +8,10 @@
 
 
 # 用語
-## boxファイル
+## Boxファイル
 仮想マシン起動時のテンプレートとなるイメージファイル．\
-[Vagrant Cloud](https://app.vagrantup.com/boxes/search)に色々なboxファイルが公開されているので，それを使うのが手っ取り早い．\
-自分でboxファイルを作成することも可能
+[Vagrant Cloud](https://app.vagrantup.com/boxes/search)に色々なBoxファイルが公開されているので，それを使うのが手っ取り早い．\
+自分でBoxファイルを作成することも可能
 
 ## Vagrantfile
 仮想マシンの構成を記述するファイル
@@ -38,7 +38,7 @@ Vagrantfile内で指定する．
 
 
 # 仮想マシン構築例
-## boxを検索
+## Boxを検索
 [Vagrant Cloud](https://app.vagrantup.com/boxes/search)でインストールするBoxファイルを検索する．
 「centos」などで検索するといくつもヒットする．
 例えば「bento/centos-6.7」というBoxがあるが，これは ユーザ名/Box名という意味です．
@@ -69,7 +69,10 @@ Vagrantfile
 上記では，`vagrant up --provider virtualbox`となっていたが，デフォルトのプロバイダがVirtualBoxなので特に指定する必要なし．
 指定したBoxが登録されていない場合は，自動的にダウンロードしてBox追加(vagrant box add)してくれる．\
 
-以下のエラーが
+以下のエラーが出るがWindows版のバグのようなもので，放置していると共有フォルダが使えなくなる．\
+`Stderr from command:`\
+`chown: changing ownership of /Vagrant: Not a directory`\
+
 
 
 # VagrantとDocker
