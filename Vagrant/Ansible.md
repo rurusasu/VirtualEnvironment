@@ -1,3 +1,13 @@
+# Infrastructure as Code
+## -Infrastructure as Codeとは
+インフラの構成管理を宣言的なコードで記述し，**ソフトウェア開発のプラクティスを適応すること**
+## -Infrastructure as Codeのプラクティス
+* バージョン管理（Git）
+* Pull request（レビュー）
+* TDI（TDD）（テスト駆動インフラストラクチャ）
+* CI（継続的インテグレーション）
+* CD（継続的デプロイ）
+
 # Ansible勉強＆実践
 ## Ansibleの特徴
 * Python製
@@ -31,10 +41,12 @@ hoge
 ## 基本構成
 ```yml
 - name: play book
-  hosts: all
+  hosts: all # リモートホスト(インベントリのホスト or グループ)
   tasks:
+    # tasksの引数
     - name: <task name>
       <module name>:
+        # moduleの引数
         <module arg1>: <arg1 value>
         <module arg2>: <arg2 value>
 ```
