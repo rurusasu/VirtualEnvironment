@@ -2,8 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "bento/ubuntu-19.10"
-  config.vm.box_version = "202003.31.0"
+  config.vm.box = "bento/ubuntu-20.04"
+  config.vm.box_version = "202004.27.0"
   config.vm.network "private_network", ip: "192.168.33.10"
   config.vm.synced_folder "D:/My_programing/python", "/vagrant_data"
 
@@ -21,6 +21,13 @@ Vagrant.configure("2") do |config|
       "--ioapic", "on" # I/O APICを有効化
     ]
   end
+  
+  # ubuntu-desktopをインストールする
+  config.vm.provision "shell", inline: <<-SHELL
+    apt update
+    apt upgrade -y
+    apt install -y  ubuntu-desktop
+  SHELL
 
   # Ansibleを用いて環境構築を行う
   config.vm.provision "ansible_local" do |ansible|
