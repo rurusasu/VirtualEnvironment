@@ -1,0 +1,35 @@
+---
+- name: playbook
+  hosts: all
+  become: yes
+  user: vagrant
+  gather_facts: False
+  max_fail_percentage: 0
+  vars:
+    app_path: /vagrant
+    home: /home
+  tasks:
+    # 言語を日本語に変更
+    - name: install language-pack-ja
+      apt:
+        name: language-pack-ja
+    - name: create locale ja_JP.UTF-8
+      locale-gen:
+        name: ja_JP.UTF-8
+    - name: change locale
+      command: update-local LANG=jp_JP.UTF-8
+
+    # TimeZoneを変更
+    - name: set timezone to Asia/Tokyo
+      timezone:
+        name: Asia/Tokyo
+        
+    # 必要なパッケージをインストール
+    #- name: Install multi packages
+    #  apt:
+    #    name:
+    #      - docker
+    #- name: apt updata
+    #apt:
+      #name: "*"
+      #state: latest

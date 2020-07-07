@@ -1,0 +1,101 @@
+---
+- name: playbook
+  hosts: all
+  become: yes
+  user: vagrant
+  gather_facts: False
+  max_fail_percentage: 0
+  vars:
+    app_path: /vagrant
+    home: /home
+  tasks:
+    # パッケージのupdateとupgradeを行う
+    - name: Run the equivalent of "apt-get update" as a separate step
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages to the latest version
+      apt:
+        upgrade: dist
+
+    # 言語設定を日本語に変更
+    ## 必要なパッケージに抜けがないか確認
+    - name: Check if All Package is installed
+      command: check-language-support -l ja
+      register: res_language_support
+      check_mode: no
+        ## language-pack-jaがインストールされていない場合にスクリプトを実行する
+    - name: Execute script if All Package is not installed 
+      apt:
+        name: (res_language_support.stdout)
+        state: latest
+      when: res_language_support.stdout != "" # ''の文字列が何か含まれている場合に実行
+
+    ## 日本語のLANGファイルがインストールされているかを確認
+    - name: Check if language-pack-ja is installed
+      command: apt list language-pack-ja --installed
+      register: res_Jp_pack
+      check_mode: no  
+    ## LANGファイルをインストール
+    ## language-pack-jaがインストールされていない場合にスクリプトを実行する
+    - name: Execute script if language-pack-ja is not installed 
+      apt:
+        name: language-pack-ja
+        state: latest
+      when: res_Jp_pack.stdout.find('all [installed]') != -1 # 'all [installed]'の文字列が含まれていない場合に実行
+
+    ## 現在のシステムロケールを確認s
+    - name: check system locale
+      command: localectl status
+      register: res_localectl # タスクの実行結果を'res_localectl'に代入
+      check_mode: no
+      changed_when: false
+    ## LANGをja_JP.utf8に変更
+    - name: changed LANG
+      command: localectl set-locale LANG=ja_JP.utf8
+      when: "'LANG=ja_JP.utf8' not in res_localectl.stdout"
+    ## LANGUAGEをja_JP:jaに変更
+    - name: changed LANGUAGE
+      command: localectl set-locale LANGUAGE=ja_JP:ja
+      when: "'LANGUAGE=ja_JP:ja' not in res_localectl.stdout"
+    
+    ## 
+
+    # TimeZoneを変更
+    ## 現在のTimezoneを確認
+    - name: Check if timezone is Asia/Tokyo
+      command: timedatectl status
+      register: res_TMdatactl
+      check_mode: no
+      changed_when: false
+    ## timezone=Asia/Tokyo以外は変更
+    - name: Execute script if timezone is not Asia/Tokyo
+      timezone:
+        name: Asia/Tokyo
+      when: "'Time zone: Asia/Tokyo (JST, +0900)' not in res_TMdatactl.stdout"
+
+    # 必要なパッケージをインストール
+    ## desktopがインストールされているかを確認
+    - name: Check if ubuntu-desktop is installed
+      command: apt list ubuntu-desktop --installed
+      register: res_installed
+      check_mode: no
+    ## ubuntu-desktopがインストールされていない場合にスクリプトを実行する
+    - name: Execute script if ubuntu-desktop is not installed
+      apt:
+        name: ubuntu-desktop
+        state: latest
+      when: res_installed.stdout.find('all [installed]') != -1 
+
+    #- name: debug var res_desktop_installed
+    #  debug: 
+    #    msg: "{{ res_installed }}"
+
+    
+    # 必要なパッケージをインストール
+    #- name: Install multi packages
+    #  apt:
+    #    name:
+    #      - ubuntu-desktop
+    #      - docker
+    #    state: latest
