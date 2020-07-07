@@ -1,0 +1,28 @@
+USERNAME = 'root' 
+PASSWORD = 'vagrant' 
+
+MESSAGE = 'Please choose a connection host.'#13#13 
+strconcat MESSAGE ' 1. controller'#13 
+strconcat MESSAGE ' 2. target'#13 
+inputbox MESSAGE 'Input host number.'
+
+str2int hostnum inputstr
+
+if hostnum = 1 then 
+    HOSTADDR = '127.0.0.1:2210' 
+elseif hostnum = 2 then 
+    HOSTADDR = '127.0.0.1:2220' 
+else 
+    messagebox 'Input number 1 or 2.' 'Input error' 
+    end 
+endif
+
+COMMAND = HOSTADDR
+strconcat COMMAND ' /ssh /2 /auth=password /user=' 
+strconcat COMMAND USERNAME 
+strconcat COMMAND ' /passwd=' 
+strconcat COMMAND PASSWORD
+
+connect COMMAND
+
+end
