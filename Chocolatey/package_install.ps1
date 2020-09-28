@@ -9,5 +9,5 @@ try {
 }
 catch {
     Write-Output "パッケージのインストールに失敗しました。"
-    echo $Error[0]
+    Write-Output $Error[0]
 }

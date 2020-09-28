@@ -10,7 +10,7 @@ Set-ExecutionPolicy AllSigned
 # もし、Chocolateyがインストールされていない場合
 try {
     $result = choco
-    echo $result
+    Write-Output $result
 }
 catch {
     Write-Output "Chocolateyをインストールします。"
@@ -20,7 +20,7 @@ catch {
 
 try {
     $result = choco
-    echo $result
+    Write-Output $result
 
     #Start-Process -FilePath powershell -ArgumentList $package_file -Verb runas 
     # .configファイルの内、更新日が最新のものを変数に格納
@@ -31,17 +31,16 @@ try {
     }
     catch {
         Write-Output "パッケージのインストールに失敗しました。"
-        echo $Error[0]
+        Write-Output $Error[0]
     }
 }
 catch {
     Write-Output "Chocolateyのインストールに失敗しました。"
-    echo $Error[0]
+    Write-Output $Error[0]
 }
 
 Write-Output "セキュリティ設定をもとに戻します。"
 # セキュリティ設定を元に戻す
 Set-ExecutionPolicy RemoteSigned
 
-# スクリプト実行後、自動的にPowerShellが閉じないようにする
-pause
+return $Error
