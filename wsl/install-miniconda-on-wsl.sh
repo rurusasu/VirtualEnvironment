@@ -1,4 +1,8 @@
+#!/bin/bash
+
 # Miniconda3 installer
+# WSL2のUbuntu側で行う Miniconda のセットアップスクリプト
+# 最終更新: 2021/08/07
 
 export VERSION=py37_4.10.3
 export SHA256SUM=a1a7285dea0edc430b2bc7951d89bb30a2a1b32026d2a7b02aacaaa95cf69c7c
@@ -6,6 +10,8 @@ export SHA256SUM=a1a7285dea0edc430b2bc7951d89bb30a2a1b32026d2a7b02aacaaa95cf69c7
 export MINICONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-${VERSION}-Linux-x86_64.sh
 
 # miniconda ダウンロード
+# REF: https://github.com/ContinuumIO/docker-images/blob/master/miniconda3/debian/Dockerfile
+# Package-URL: https://docs.conda.io/en/latest/miniconda.html
 wget "${MINICONDA_URL}" -O miniconda.sh -q && \
 echo "${SHA256SUM} miniconda.sh" > shasum && \
 if [ "${CONDA_VERSION}" != "latest" ]; then sha256sum --check --status shasum; fi && \
