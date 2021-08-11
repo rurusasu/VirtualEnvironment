@@ -24,7 +24,7 @@ python3-pytest
 
 # conda 仮想環境作成
 # 仮想環境を一度削除
-conda remove -n pclpy --all
+conda remove -yn pclpy --all
 # 不要になったパッケージも削除
 conda clean -y --all
 # 再度仮想環境を作成
@@ -49,4 +49,8 @@ bash scripts/generate_points_and_bindings.sh
 cd generators
 PCL_REPO_PATH=/usr/local/pcl-pcl-1.9.1 PYTHONPATH=/usr/local/pytools/pclpy python3 generate_point_types.py
 cd ..
+# SWAP 領域が 4GB以下の場合、コンパイルエラー
+# Error: gcc: fatal error: Killed signal terminated program cc1plus
+# REF: https://omohikane.com/centos_internal_compiler_error/
 python3 setup.py build
+python3 setup.py install
