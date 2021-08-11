@@ -23,6 +23,11 @@ python3-pytest
 
 
 # conda 仮想環境作成
+# 仮想環境を一度削除
+conda remove -n pclpy --all
+# 不要になったパッケージも削除
+conda clean -y --all
+# 再度仮想環境を作成
 conda env create -n pclpy -f environment.yml
 conda deactivate
 conda activate pclpy
@@ -44,3 +49,4 @@ bash scripts/generate_points_and_bindings.sh
 cd generators
 PCL_REPO_PATH=/usr/local/pcl-pcl-1.9.1 PYTHONPATH=/usr/local/pytools/pclpy python3 generate_point_types.py
 cd ..
+python3 setup.py build
