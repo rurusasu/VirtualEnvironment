@@ -1,7 +1,0 @@
-# install-cuda-on-wsl.sh の実行コマンド
-# REF: https://astherier.com/blog/2021/07/windows11-cuda-on-wsl2-setup/
-wget https://astherier.com/static/blog/2021-07-17/install-cuda-on-wsl.sh
-source ./install-cuda-on-wsl.sh
-
-# install-miniconda-on-wsl.sh の実行コマンド
-source ./install-miniconda-on-wsl.sh
