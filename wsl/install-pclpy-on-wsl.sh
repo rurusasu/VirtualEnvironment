@@ -23,14 +23,15 @@ python3-pytest
 
 
 # conda 仮想環境作成
+export VM_NAME=pclpy
 # 仮想環境を一度削除
-conda remove -yn pclpy --all
-# 不要になったパッケージも削除
-conda clean -y --all
-# 再度仮想環境を作成
-conda env create -n pclpy -f environment.yml
 conda deactivate
-conda activate pclpy
+conda remove -yn ${VM_NAME} --all
+# 不要になったパッケージも削除
+conda clean --all
+# 再度仮想環境を作成
+conda create -n ${VM_NAME} -f environment.yml
+conda activate ${VM_NAME}
 pip install -r requirements-dev.txt
 
 # requirements-dev.txt で必要と言われる可能性のあるパッケージ

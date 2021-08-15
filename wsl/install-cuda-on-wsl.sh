@@ -32,6 +32,8 @@ cat << 'EOS' >> ~/.profile
 #Added by install-cuda-on-wsl.sh
 #Ref: https://astherier.com/blog/2021/07/windows11-cuda-on-wsl2-setup/
 export PATH=/usr/local/cuda-11.4/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64\
+            ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 #Added: end
 
 EOS
