@@ -17,10 +17,8 @@ echo "${SHA256SUM} miniconda.sh" > shasum && \
 if [ "${CONDA_VERSION}" != "latest" ]; then sha256sum --check --status shasum; fi && \
 sudo mkdir -p /opt
 # miniconda インストール
-sudo bash miniconda.sh -b -p /opt/conda
-sudo rm miniconda.sh shasum
-sudo mkdir -p /etc/profile.d/conda && \
-
+sudo bash miniconda.sh -b -p /opt/conda && \
+rm miniconda.sh shasum && \
 # シンボリックリンクを作成
 ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 

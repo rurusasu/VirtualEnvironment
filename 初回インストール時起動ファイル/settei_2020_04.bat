@@ -11,6 +11,7 @@ cls
 rem 以下のコマンドはパワーシェルで実行する
 powershell -Command "Get-AppxPackage C27EB4BA.DropboxOEM* | Remove-AppxPackage -ErrorAction SilentlyContinue"
 powershell -Command "Get-AppxPackage A278AB0D.DragonManiaLegends* | Remove-AppxPackage -ErrorAction SilentlyContinue"
+powershell -Command "Get-AppxPackage MicrosoftTeams* | Remove-AppxPackage -ErrorAction SilentlyContinue"
 powershell -Command "Get-AppxPackage Microsoft.DesktopAppInstaller* | Remove-AppxPackage -ErrorAction SilentlyContinue"
 powershell -Command "Get-AppxPackage Microsoft.GetHelp* | Remove-AppxPackage -ErrorAction SilentlyContinue"
 powershell -Command "Get-AppxPackage Microsoft.Getstarted* | Remove-AppxPackage -ErrorAction SilentlyContinue"
