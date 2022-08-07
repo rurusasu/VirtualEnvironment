@@ -1,0 +1,4 @@
+.wslconfig
+*.pin*
+*.deb
+*.deb*
