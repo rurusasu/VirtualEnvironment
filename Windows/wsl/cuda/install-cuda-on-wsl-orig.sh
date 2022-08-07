@@ -5,7 +5,7 @@
 #
 #install-cuda-on-wsl.sh
 #WSL2のUbuntu側で行うCUDA on WSLのセットアップスクリプト
-#最終更新：2021/07/17
+#最終更新: 2021/07/17
 #https://astherier.com/blog/2021/07/windows11-cuda-on-wsl2-setup/
 
 #CUDAリポジトリ名(DISTRO)とインストールするパッケージ名(APT_INSTALL)を指定してください。

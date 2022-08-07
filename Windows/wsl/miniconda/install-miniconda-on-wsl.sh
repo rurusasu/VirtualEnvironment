@@ -2,10 +2,12 @@
 
 # Miniconda3 installer
 # WSL2のUbuntu側で行う Miniconda のセットアップスクリプト
-# 最終更新: 2022/02/19
+# 最終更新: 2022/08/07
 
+# Linux 版をインストールする場合は、Miniconda3 Linux 64-bit 版をインストールする。
+# SHA256 hash も同様のパッケージのものをコピーする。
 export VERSION=latest
-export SHA256SUM=4ee9c3aa53329cd7a63b49877c0babb49b19b7e5af29807b793a76bdb1d362b4
+export SHA256SUM=78f39f9bae971ec1ae7969f0516017f2413f17796670f7040725dd83fcff5689
 export MINICONDA_URL=https://repo.anaconda.com/miniconda/Miniconda3-${VERSION}-Linux-x86_64.sh
 
 # Miniconda の保存先
