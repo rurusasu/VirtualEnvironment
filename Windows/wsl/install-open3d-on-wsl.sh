@@ -22,24 +22,23 @@ sudo pip install open3d-python
 sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
 # キーを設定する
 curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-sudo apt -y update && \
-sudo apt -y install ros-noetic-desktop-full
+sudo apt -y update &&
+  sudo apt -y install ros-noetic-desktop-full
 apt search ros-noetic
 
 # 環境設定
 source /opt/ros/noetic/setup.bash
-echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+echo "source /opt/ros/noetic/setup.bash" >>~/.bashrc
 source ~/.bashrc
-
 
 # 依存関係のインストール
 conda activate ${VM_NAME}
 sudo apt -y install \
-build-essential \
-python3-rosdep \
-python3-rosinstall \
-python3-rosinstall-generator \
-python3-wstool
+  build-essential \
+  python3-rosdep \
+  python3-rosinstall \
+  python3-rosinstall-generator \
+  python3-wstool
 
 # rosdep の設定
 sudo rosdep init
@@ -49,11 +48,11 @@ rosdep update
 # catkin_tools インストール
 # REF: https://catkin-tools.readthedocs.io/en/latest/installing.html
 sudo sh \
-    -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" \
+  -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" \
         > /etc/apt/sources.list.d/ros-latest.list'
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
-sudo apt update && \
-sudo apt install python3-catkin-tools
+sudo apt update &&
+  sudo apt install python3-catkin-tools
 # catkin ワークスペースの設定
 sudo rm -rf ~/catkin_ws
 sudo mkdir -p ~/catkin_ws
@@ -70,8 +69,8 @@ sudo chown $USER: -R /home/${USER}/catkin_ws
 # REF: https://bbs.archlinux.org/viewtopic.php?id=247450
 # REF: https://github.com/ryuichiueda/pimouse_slam/issues/1
 pip3 install \
-empy \
-rospkg
+  empy \
+  rospkg
 
 # catkin に python3 を使用するように指示
 # REF: https://bbs.archlinux.org/viewtopic.php?id=247450

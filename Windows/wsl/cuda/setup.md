@@ -2,6 +2,8 @@
 * wsl2上のUbuntu22.04内にdockerをインストールし、さらにその上に仮想環境を構築する場合、後者の仮想環境上でcudaを認識させるには、[nvidia/cudaイメージ](https://hub.docker.com/r/nvidia/cuda/#!)を使用すると良いみたい。
 * nvidia/cudaコンテナを使用するには、wsl2上のUbuntu22.04に[nvidia-docker2パッケージ](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker)を事前にインストールしておく必要がある。
 * nvidia-docker2パッケージをインストールする手順をまとめたシェルスクリプト `install-nvidia-docker2-on-wsl.sh` を作成した。
+* nvidia/cuda コンテナを docker-compose から作成するには、いくつかのコマンドをcompose.yamlに追記する必要がある。
+* [Compose における GPU アクセスの有効化](https://matsuand.github.io/docs.docker.jp.onthefly/compose/gpu-support/) を参考にコマンドを追加する。
 
 # 2022 年 5月
 * Docker Desktop の Linux 版が発表される。
